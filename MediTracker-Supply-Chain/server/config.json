@@ -1,0 +1,12 @@
+{
+  "MAPS_API_KEY": "123",
+  "PORT": 3000,
+  "RETRY_WAIT": 5000,
+  "VALIDATOR_URL": "tcp://validator:4004",
+  "DB_HOST": "rethink",
+  "DB_PORT": 28015,
+  "DB_NAME": "supply_chain",
+  "SIGNING_ALGORITHM": "secp256k1",
+  "JWT_SECRET": "supply-chain-secret",
+  "PRIVATE_KEY": "1111111111111111111111111111111111111111111111111111111111111111"
+}
