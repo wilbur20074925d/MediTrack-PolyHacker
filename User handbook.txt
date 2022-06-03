@@ -1,0 +1,21 @@
+Blockchain we use: Hyper Ledger
+
+https://20074925d.wixsite.com/meditracker
+
+docker-compose up --build
+
+docker-compose up
+
+docker-compose down
+
+Hospital Client 
+http://localhost:8026
+
+Manufacturer
+http://localhost:8021
+
+Certifying Client
+http://localhost:8025
+
+RethinkDB
+http://localhost:8023
