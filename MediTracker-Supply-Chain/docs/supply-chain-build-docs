@@ -1,0 +1,52 @@
+
+FROM ubuntu:xenial
+
+RUN echo "deb http://repo.sawtooth.me/ubuntu/ci xenial universe" >> /etc/apt/sources.list \
+ && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8AA7AF1F1091A5FD \
+ && apt-get update \
+ && apt-get install -y -q --allow-downgrades \
+    build-essential \
+    git \
+    pep8 \
+    python3-colorlog \
+    python3-dev \
+    python3-pip \
+    python3-protobuf \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
+ && pip3 install \
+    pylint \
+    bandit
+
+# Install jsdoc
+RUN apt-get update && apt-get install -y -q --no-install-recommends \
+    curl \
+ && curl -s -S -o /tmp/setup-node.sh https://deb.nodesource.com/setup_6.x \
+ && chmod 755 /tmp/setup-node.sh \
+ && /tmp/setup-node.sh \
+ && apt-get install nodejs -y -q \
+ && rm /tmp/setup-node.sh \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/* \
+ && npm install -g \
+    jsdoc
+
+RUN apt-get update && apt-get install -y -q \
+    dvipng \
+    make \
+    sudo \
+    texlive-fonts-recommended \
+    texlive-latex-base \
+    texlive-latex-extra \
+    texlive-latex-recommended \
+    zip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip3 install \
+    sphinx==1.5.6 \
+    sphinxcontrib-httpdomain \
+    sphinxcontrib-openapi \
+    sphinx_rtd_theme
+
+WORKDIR /project/sawtooth-supply-chain/docs
+CMD make html latexpdf
